@@ -9,14 +9,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 40px;
+  padding: 25px 40px;
   background-color: white;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .logo a {
   text-decoration: none;
-  font-size: 24px;
+  font-size: 35px;
   font-weight: bold;
   color: #007bff;
 }
@@ -28,9 +28,11 @@
 
 .menu a {
   text-decoration: none;
-  font-size: 16px;
+  font-size: 26px;
   color: #333;
-  transition: 0.3s;
+  font-weight: bold;
+  transition: 0.3s
+
 }
 
 .menu a:hover {

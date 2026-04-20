@@ -1,105 +1,34 @@
 {
   "users": [
-    {
-      "name": "mohit Rahangdale",
-      "contact": "9302770758",
-      "email": "mohitrahangdale67890@gmail.com",
-      "password": "123",
-      "confirmPassword": "123",
-      "id": "WeQnfotJCBs"
-    },
-    {
-      "name": "mohit Rahangdale",
-      "contact": "9302770758",
-      "email": "mohitrahangdale67890@gmail.com",
-      "password": "120",
-      "confirmPassword": "120",
-      "id": "YhHAUUZ6V3o"
-    },
-    {
-      "name": "mohit Rahangdale",
-      "contact": "9302770758",
-      "email": "mohitrahangdale67890@gmail.com",
-      "password": "120",
-      "id": "egnkKITvpok"
-    },
-    {
-      "name": "mohit Rahangdale",
-      "contact": "9302770758",
-      "email": "mohitrahangdale67890@gmail.com",
-      "password": "120",
-      "id": "gyofSo8w_6A"
-    },
-    {
-      "name": "mohit Rahangdale",
-      "contact": "9302770758",
-      "email": "mohitrahangdale67890@gmail.com",
-      "password": "120",
-      "id": "C8VYjO6pWI0"
-    },
-    {
-      "name": "mohit Rahangdale",
-      "contact": "9302770758",
-      "email": "mohitrahangdale67890@gmail.com",
-      "password": "120",
-      "id": "IH601FYw4PM"
-    },
-    {
-      "name": "mohit Rahangdale",
-      "contact": "9302770758",
-      "email": "mohitrahangdale67890@gmail.com",
-      "password": "120",
-      "id": "JRM0j-OTmrE"
-    },
-    {
-      "name": "mohit Rahangdale",
-      "contact": "9302770758",
-      "email": "mohitrahangdale67890@gmail.com",
-      "password": "120",
-      "id": "m3YhUsk9AtM"
-    },
-    {
-      "name": "mohit Rahangdale",
-      "contact": "9302770758",
-      "email": "mohit67890@gmail.com",
-      "password": "120",
-      "id": "RWKR36VScb8"
-    },
-    {
-      "name": "mohit Rahangdale",
-      "contact": "9302770758",
-      "email": "mohitrahangdale@gmail.com",
-      "password": "100",
-      "id": "faPGBwHXLys"
-    },
-    {
-      "name": "mohit Rahangdale",
-      "contact": "9302770758",
-      "email": "mohitrahangdal@gmail.com",
-      "password": "120",
-      "id": "-1P0dpwH1eA"
-    },
-    {
-      "name": "mohit Rahangdale",
-      "contact": "9302770758",
-      "email": "mohitrahangdae@gmail.com",
-      "password": "100",
-      "id": "vKwnBhDi0TQ"
-    },
-    {
-      "name": "mohit Rahangdale",
-      "contact": "9302770758",
-      "email": "mohitrahangde@gmail.com",
-      "password": "000",
-      "id": "oOsdd8-bpVE"
-    },
-    {
-      "name": "mohit Rahangdale",
-      "contact": "9302770758",
-      "email": "mohitrahande@gmail.com",
-      "password": "000",
-      "id": "OKAo_guIFbs"
-    }
+   
   ],
+
+    "flights": [
+      {
+        "id": 1,
+        "from": "Delhi",
+        "to": "Mumbai",
+        "date": "20-04-2026",
+        "return": "25-04-2026",
+        "travellers": 2
+      },
+      {
+        "id": 1,
+        "from": "Delhi",
+        "to": "manali",
+        "date": "22-04-2026",
+        "return": "25-04-2026",
+        "travellers": 2
+      },
+      {
+        "id": 2,
+        "from": "Bangalore",
+        "to": "Chennai",
+        "date": "23-04-2026",
+        "return": "2024-08-20",
+        "travellers": 1
+      }
+    ]
+    ,
   "$schema": "./node_modules/json-server/schema.json"
 }

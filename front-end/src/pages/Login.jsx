@@ -45,7 +45,7 @@ const Login = () => {
 
         if (!emailExists) {
           alert("Email not found! signup first");
-          return;
+          navigate("/signup");
         }
 
         let user = users.find(
@@ -78,6 +78,7 @@ const Login = () => {
           value={form.email}
           onChange={handleChange}
         />
+
 
         <input
           type="password"

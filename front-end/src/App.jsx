@@ -6,6 +6,7 @@ import Flight from './pages/Flight';
 import Bus from './pages/Bus';
 import Login from './pages/login';
 import Signup from './pages/signup';
+import Results from './pages/Results';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="flight" element={<Flight />} />
         <Route path="train" element={<Train/>} />
         <Route path="bus" element={<Bus />} />
+        <Route path="results" element={<Results/>} />
         </Route>
         
         <Route path="login" element={<Login/>} />
