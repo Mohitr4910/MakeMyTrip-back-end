@@ -7,6 +7,7 @@ import Bus from './pages/Bus';
 import Login from './pages/login';
 import Signup from './pages/signup';
 import Results from './pages/Results';
+import AirlineDashboard from './pages/AirlineDashboard';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="results" element={<Results/>} />
         </Route>
         
+        <Route path="airline-dashboard" element={<AirlineDashboard/>} />
         <Route path="login" element={<Login/>} />
         <Route path="signup" element={<Signup/>} />
       </Routes>

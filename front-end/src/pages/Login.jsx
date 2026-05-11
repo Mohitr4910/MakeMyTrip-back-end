@@ -9,6 +9,8 @@ const Login = () => {
     password: "",
   });
 
+ 
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -33,35 +35,43 @@ const Login = () => {
     }
 
     if (valid) {
-      let api = "http://localhost:3000/users";
+      // let api="http://127.0.0.1:8000/api/users/"
 
-      axios.get(api).then((res) => {
-        let users = res.data;
-        console.log(users);
-
-        let emailExists = users.some(
-          (user) => user.email === form.email
-        );
-
-        if (!emailExists) {
-          alert("Email not found! signup first");
-          navigate("/signup");
-        }
-
-        let user = users.find(
-          (user) => user.email === form.email
-        );
-
-        if (user.password !== form.password) {
-          alert("Incorrect password! try again");
-          return;
-        }
+        axios.post("http://127.0.0.1:8000/api/login/", {
+        email: form.email,
+        password: form.password
+        })
+        .then((res) => {
+        console.log(res.data);
 
         alert("Login Successful ✅");
-        localStorage.setItem("userEmail", user.email);
 
-        navigate("/");
-      });
+        // ✅ Token store
+        localStorage.setItem("accessToken", res.data.access);
+        localStorage.setItem("refreshToken", res.data.refresh);
+        localStorage.setItem("role", res.data.role);
+        localStorage.setItem("user", JSON.stringify(res.data));
+        console.log("user:", res.data);
+        // console.log("Access Token:", res.data.access);
+        // console.log("Refresh Token:", res.data.refresh);
+        // console.log("User Email:", res.data.email);
+        // console.log("Role:", res.data.role);
+
+      if (res.data.role === "admin") {
+          navigate("/admin-dashboard");
+
+        } else if (res.data.role === "company") {
+          navigate("/airline-dashboard");
+
+        } else {
+          navigate("/");
+        }
+
+        })
+        .catch((err) => {
+        alert(err.response.data.error);
+          console.log("Sending:", form.password);
+        });
 
     }
   };

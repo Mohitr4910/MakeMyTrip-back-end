@@ -18,7 +18,7 @@ import AirIndiaExpress from "../assets/IX.png";
 import Akasa from "../assets/QP.png";
 import Alliance from "../assets/9I.png";
 let Flight= () => {
-
+  
   let [form, setform ]=useState({
     from:"",
     to:"",
@@ -27,7 +27,6 @@ let Flight= () => {
     return:""
   })
   let navigate = useNavigate();
-
     let [flights, setFlights] = useState([]);
         
     let manageform = (e) => {
@@ -45,13 +44,24 @@ let Flight= () => {
   //     date: form.departure
   //   }
   // });
-  let res = await axios.get("http://localhost:3000/flights");
+  let accessToken = localStorage.getItem("accessToken");
+  console.log("Access Token:", accessToken);
+  let res = await axios
+  .get("http://127.0.0.1:8000/api/flights/", {
+    headers:{
+      Authorization:`Bearer ${accessToken}`
+    }
+  })
+  .catch(err => {
+    console.log("error", err.response?.data);
+  });
 
 let filtered = res.data.filter(flight =>
   flight.from.toLowerCase().includes(form.from.toLowerCase()) &&
   flight.to.toLowerCase().includes(form.to.toLowerCase())
  
 );
+
 
 setFlights(filtered);
 console.log("Filtered Flights:", filtered);

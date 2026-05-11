@@ -29,21 +29,15 @@ let Signup = () => {
 
 
      if(valid){
-       let api="http://localhost:3000/users"
-      axios.get(api).then((res)=>{
-        let users=res.data;
-        console.log(users);
-        let emailExists=users.some(user=>user.email===form.email);
-           console.log(emailExists);
-        if (emailExists) {
-          alert("Email already exists!");
-           return;
-        }
-        
-        let { confirmPassword, ...userData } = form;
-        axios.post(api,userData).then(()=>{ alert("Signup Successful ✅")}).catch((err)=>{alert("Signup Failed ❌")})
-         navigate("/login");
-      })
+       let api="http://127.0.0.1:8000/api/users/"
+      axios.post(api, { name: form.name, contact: form.contact, email: form.email, password: form.password }).then((res)=>{
+
+        alert("Signup successful!");
+        navigate("/login");
+      }).catch((err)=>{
+        console.log(err.response.data);
+        alert("Signup failed! Please try again.");
+      });
 
 
     }
