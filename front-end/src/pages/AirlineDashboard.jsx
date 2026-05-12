@@ -1,130 +1,138 @@
-import React from 'react'
+import React from "react";
+import "./AirlineDashboard.css";
+import { Link } from "react-router-dom";
 
 function AirlineDashboard() {
-    const data = JSON.parse(localStorage.getItem("user"));
+  const data = JSON.parse(localStorage.getItem("user"));
 
   // company data
   const user = data?.user;
-  const company = user.airline;
+  const company = user?.airline;
 
-  // user data
-   
-  console.log("Airline Dashboard Data:", data);
-  console.log("Company Data:", company);
-  console.log("User Data:", user);
+  let loggedin=user?.email 
 
+  console.log("Logged-in Email:", loggedin);
+
+
+  // dummy flights
+  const flights = [
+    {
+      id: 1,
+      flightNo: "AI-202",
+      from: "Delhi",
+      to: "Mumbai",
+      status: "Active",
+    },
+    {
+      id: 2,
+      flightNo: "AI-404",
+      from: "Bhopal",
+      to: "Dubai",
+      status: "Delayed",
+    },
+    {
+      id: 3,
+      flightNo: "AI-707",
+      from: "Indore",
+      to: "London",
+      status: "Active",
+    },
+  ];
 
   return (
-    <>
-    <div
-      style={{
-        padding: "30px",
-        fontFamily: "Arial",
-        background: "#f4f6f9",
-        minHeight: "100vh",
-      }}
-    >
-      <h1 style={{ marginBottom: "20px" }}>Airline Dashboard</h1>
+    <div className="dashboard">
+      {/* Navbar */}
+      <div className="navbar">
+        <h1>✈ Airline Dashboard</h1>
 
-      {/* Company Card */}
-      <div
-        style={{
-          background: "white",
-          padding: "20px",
-          borderRadius: "10px",
-          boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
-          marginBottom: "20px",
-        }}
-      >
-        <h2>Company Details</h2>
-
-        <p>
-          <strong>Company Name:</strong> {user?.name}
-        </p>
-
-        <p>
-          <strong>Company Code:</strong> {company?.company_code}
-        </p>
-
-        <p>
-          <strong>Email:</strong> {user?.email}
-        </p>
-
-        <p>
-          <strong>Country:</strong> {company?.country}
-        </p>
-
-        <p>
-          <strong>Address:</strong> {company?.address}
-        </p>
-
-        <p>
-          <strong>Contact:</strong> {user?.contact}
-        </p>
-
-        <p>
-          <strong>Username:</strong> {user?.username}
-        </p>
-
-        <p>
-          <strong>Role:</strong> {user?.role}
-        </p>
-
-        <p>
-          <strong>Last Login:</strong> {user?.last_login}
-        </p>
+        <div className="profile">
+          <h3>{user?.name}</h3>
+          <p>{company?.country}</p>
+        </div>
       </div>
 
-      {/* Stats Section */}
-      <div
-        style={{
-          display: "flex",
-          gap: "20px",
-          flexWrap: "wrap",
-        }}
-      >
-        <div
-          style={{
-            background: "white",
-            padding: "20px",
-            borderRadius: "10px",
-            width: "220px",
-            boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
-          }}
-        >
+      {/* Company Card */}
+      <div className="company-card">
+        <div>
+          <h2>{user?.name}</h2>
+          <p>Premium Airline Management System</p>
+        </div>
+
+        <Link to="/FlightForm" className="add-btn">
+          + Add Flight
+        </Link>
+      </div>
+
+      {/* Stats */}
+      <div className="stats-container">
+        <div className="stat-card">
           <h3>Total Flights</h3>
           <h1>120</h1>
         </div>
 
-        <div
-          style={{
-            background: "white",
-            padding: "20px",
-            borderRadius: "10px",
-            width: "220px",
-            boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
-          }}
-        >
+        <div className="stat-card">
           <h3>Active Flights</h3>
           <h1>98</h1>
         </div>
 
-        <div
-          style={{
-            background: "white",
-            padding: "20px",
-            borderRadius: "10px",
-            width: "220px",
-            boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
-          }}
-        >
+        <div className="stat-card">
           <h3>Cancelled</h3>
-          <h1>5</h1>
+          <h1>12</h1>
+        </div>
+
+        <div className="stat-card">
+          <h3>Revenue</h3>
+          <h1>$25K</h1>
         </div>
       </div>
+
+      {/* Flights Table */}
+      <div className="flight-section">
+        <div className="section-header">
+          <h2>Flights</h2>
+          <button className="view-btn">View All</button>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Flight No</th>
+              <th>From</th>
+              <th>To</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {flights.map((flight) => (
+              <tr key={flight.id}>
+                <td>{flight.flightNo}</td>
+                <td>{flight.from}</td>
+                <td>{flight.to}</td>
+                <td>
+                  <span
+                    className={
+                      flight.status === "Active"
+                        ? "status active"
+                        : "status delayed"
+                    }
+                  >
+                    {flight.status}
+                  </span>
+                </td>
+
+                <td>
+                  <button className="edit-btn">Update</button>
+                  <button className="delete-btn">Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
-    </>
-  )
+  );
 }
 
-export default AirlineDashboard
+export default AirlineDashboard;

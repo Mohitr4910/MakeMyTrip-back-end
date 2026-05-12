@@ -51,6 +51,7 @@ const Login = () => {
         localStorage.setItem("refreshToken", res.data.refresh);
         localStorage.setItem("role", res.data.role);
         localStorage.setItem("user", JSON.stringify(res.data));
+        localStorage.setItem("email", res.data.email);
         console.log("user:", res.data);
         // console.log("Access Token:", res.data.access);
         // console.log("Refresh Token:", res.data.refresh);

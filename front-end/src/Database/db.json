@@ -1,42 +1,79 @@
 {
   "users": [
-   
+    {
+      "name": "mohit",
+      "source": "indigo",
+      "from_location": "balaghat",
+      "destination": "bhopal",
+      "date": "2026-05-14",
+      "time": "01:40",
+      "company_email": "indigo@gmail.com",
+      "id": "oaLPmud73pQ"
+    },
+    {
+      "name": "indigo-2002",
+      "source": "indigo",
+      "from_location": "balaghat",
+      "destination": "bhopal",
+      "date": "2026-05-14",
+      "time": "01:48",
+      "company_email": "indigo@gmail.com",
+      "id": "dMNJvyHxkHo"
+    },
+    {
+      "name": "indigo-2002",
+      "source": "indigo",
+      "from_location": "Thanegaon",
+      "destination": "bhopal",
+      "date": "2026-05-14",
+      "time": "01:59",
+      "company_email": "indigo@gmail.com",
+      "id": "utN5LkFDOaY"
+    },
+    {
+      "name": "indigo-2002",
+      "source": "indigo",
+      "from_location": "thanegaon",
+      "destination": "bhopal",
+      "date": "2026-05-14",
+      "time": "01:49",
+      "company_email": "indigo@gmail.com",
+      "id": "YIsy5EFYkRQ"
+    }
   ],
-
-    "flights": [
-      {
-        "id": 1,
-        "from": "Delhi",
-        "to": "Mumbai",
-        "date": "01-05-2026",
-        "return": "25-04-2026",
-        "travellers": 2
-      },
-      {
-        "id": 1,
-        "from": "Delhi",
-        "to": "Mumbai",
-        "date": "02-05-2026",
-        "return": "25-04-2026",
-        "travellers": 2
-      },
-      {
-        "id": 1,
-        "from": "Delhi",
-        "to": "Mumbai",
-        "date": "03-05-2026",
-        "return": "25-04-2026",
-        "travellers": 2
-      },
-      {
-        "id": 2,
-        "from": "Bangalore",
-        "to": "Chennai",
-        "date": "23-04-2026",
-        "return": "2024-08-20",
-        "travellers": 1
-      }
-    ]
-    ,
+  "flights": [
+    {
+      "id": "1",
+      "from": "Delhi",
+      "to": "Mumbai",
+      "date": "01-05-2026",
+      "return": "25-04-2026",
+      "travellers": 2
+    },
+    {
+      "id": "1",
+      "from": "Delhi",
+      "to": "Mumbai",
+      "date": "02-05-2026",
+      "return": "25-04-2026",
+      "travellers": 2
+    },
+    {
+      "id": "1",
+      "from": "Delhi",
+      "to": "Mumbai",
+      "date": "03-05-2026",
+      "return": "25-04-2026",
+      "travellers": 2
+    },
+    {
+      "id": "2",
+      "from": "Bangalore",
+      "to": "Chennai",
+      "date": "23-04-2026",
+      "return": "2024-08-20",
+      "travellers": 1
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }
