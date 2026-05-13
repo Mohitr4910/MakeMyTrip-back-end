@@ -4,9 +4,6 @@
   box-sizing: border-box;
 }
 
-body {
-  background: #0f172a;
-}
 
 .dashboard {
   min-height: 100vh;

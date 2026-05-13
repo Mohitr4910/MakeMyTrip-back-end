@@ -8,8 +8,9 @@ const Login = () => {
     email: "",
     password: "",
   });
+  
 
- 
+
 
   const navigate = useNavigate();
 
@@ -58,15 +59,27 @@ const Login = () => {
         // console.log("User Email:", res.data.email);
         // console.log("Role:", res.data.role);
 
-      if (res.data.role === "admin") {
-          navigate("/admin-dashboard");
 
-        } else if (res.data.role === "company") {
-          navigate("/airline-dashboard");
 
-        } else {
-          navigate("/");
-        }
+const user = res.data.user;
+
+console.log("Superuser:", user?.is_superuser);
+
+if (user?.is_superuser) {
+
+    navigate("/admin-dashboard");
+
+} 
+else if (res.data.role === "company") {
+
+    navigate("/airline-dashboard");
+
+} 
+else {
+
+    navigate("/");
+
+}
 
         })
         .catch((err) => {

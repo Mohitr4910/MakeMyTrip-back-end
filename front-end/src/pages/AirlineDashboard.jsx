@@ -1,46 +1,64 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./AirlineDashboard.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function AirlineDashboard() {
+
+  const [flights, setFlights] = useState([]);
+
   const data = JSON.parse(localStorage.getItem("user"));
 
   // company data
   const user = data?.user;
   const company = user?.airline;
 
-  let loggedin=user?.email 
+  let loggedin = user?.email;
+
+  // token
+  const accessToken = data?.access;
 
   console.log("Logged-in Email:", loggedin);
 
+  useEffect(() => {
 
-  // dummy flights
-  const flights = [
-    {
-      id: 1,
-      flightNo: "AI-202",
-      from: "Delhi",
-      to: "Mumbai",
-      status: "Active",
-    },
-    {
-      id: 2,
-      flightNo: "AI-404",
-      from: "Bhopal",
-      to: "Dubai",
-      status: "Delayed",
-    },
-    {
-      id: 3,
-      flightNo: "AI-707",
-      from: "Indore",
-      to: "London",
-      status: "Active",
-    },
-  ];
+    const fetchFlights = async () => {
+
+      try {
+
+        let res = await axios.get(
+          "http://127.0.0.1:8000/api/flights/",
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+          }
+        );
+
+        let companyFlights = res.data.filter(
+          (flight) => flight.company_email === loggedin
+        );
+
+        console.log("Company Flights:", companyFlights);
+
+        setFlights(companyFlights);
+
+      } 
+      catch (err) {
+
+        console.log("error", err.response?.data);
+
+      }
+
+    };
+
+    fetchFlights();
+
+  }, []);
 
   return (
     <div className="dashboard">
+
       {/* Navbar */}
       <div className="navbar">
         <h1>✈ Airline Dashboard</h1>
@@ -67,17 +85,17 @@ function AirlineDashboard() {
       <div className="stats-container">
         <div className="stat-card">
           <h3>Total Flights</h3>
-          <h1>120</h1>
+          <h1>{flights.length}</h1>
         </div>
 
         <div className="stat-card">
           <h3>Active Flights</h3>
-          <h1>98</h1>
+          <h1>{flights.length}</h1>
         </div>
 
         <div className="stat-card">
           <h3>Cancelled</h3>
-          <h1>12</h1>
+          <h1>0</h1>
         </div>
 
         <div className="stat-card">
@@ -88,49 +106,59 @@ function AirlineDashboard() {
 
       {/* Flights Table */}
       <div className="flight-section">
+
         <div className="section-header">
           <h2>Flights</h2>
           <button className="view-btn">View All</button>
         </div>
 
         <table>
+
           <thead>
             <tr>
-              <th>Flight No</th>
+              <th>Name</th>
+              <th>Source</th>
               <th>From</th>
-              <th>To</th>
-              <th>Status</th>
+              <th>Destination</th>
+              <th>Date</th>
+              <th>Time</th>
               <th>Actions</th>
             </tr>
           </thead>
 
           <tbody>
+
             {flights.map((flight) => (
+
               <tr key={flight.id}>
-                <td>{flight.flightNo}</td>
-                <td>{flight.from}</td>
-                <td>{flight.to}</td>
-                <td>
-                  <span
-                    className={
-                      flight.status === "Active"
-                        ? "status active"
-                        : "status delayed"
-                    }
-                  >
-                    {flight.status}
-                  </span>
-                </td>
+
+                <td>{flight.name}</td>
+                <td>{flight.source}</td>
+                <td>{flight.from_location}</td>
+                <td>{flight.destination}</td>
+                <td>{flight.date}</td>
+                <td>{flight.time}</td>
 
                 <td>
-                  <button className="edit-btn">Update</button>
-                  <button className="delete-btn">Delete</button>
+                  <button className="edit-btn">
+                    Update
+                  </button>
+
+                  <button className="delete-btn">
+                    Delete
+                  </button>
                 </td>
+
               </tr>
+
             ))}
+
           </tbody>
+
         </table>
+
       </div>
+
     </div>
   );
 }

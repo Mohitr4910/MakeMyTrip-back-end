@@ -9,6 +9,10 @@ import Signup from './pages/signup';
 import Results from './pages/Results';
 import AirlineDashboard from './pages/AirlineDashboard';
 import FlightForm from './pages/FlightForm';
+import AdminDashboard from './pages/AdminDashboard';
+import AllFlights from './pages/AllFlights';
+import Airlins from './pages/Airlins';
+import Users from './pages/Users';
 
 
 function App() {
@@ -28,7 +32,11 @@ function App() {
         <Route path="signup" element={<Signup/>} />
         
         <Route path="airline-dashboard" element={<AirlineDashboard/>} />
+        <Route path="admin-dashboard" element={<AdminDashboard/>} />
         <Route path="FlightForm" element={<FlightForm/>} />
+        <Route path="airlines" element={<Airlins/>} />
+        <Route path="allflights" element={<AllFlights/>} />
+        <Route path="users" element={<Users/>} />
         
       </Routes>
   )
