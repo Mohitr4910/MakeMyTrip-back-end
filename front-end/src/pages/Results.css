@@ -1,0 +1,104 @@
+body {
+  background: #f2f4f7;
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+}
+
+.subtitle {
+  color: gray;
+}
+
+/* Tabs */
+.date-tabs {
+  display: flex;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.tab {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.tab.active {
+  border-bottom: 3px solid blue;
+  font-weight: bold;
+}
+
+.tab span {
+  font-size: 12px;
+  color: orange;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  justify-content: space-between;
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.toggle-group label {
+  margin-right: 20px;
+}
+
+/* Offer */
+.offer {
+  margin: 20px 0;
+  padding: 20px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #2a3cff, #4facfe);
+  color: white;
+}
+
+/* Train Card */
+.train-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.train-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.rating {
+  background: #eee;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+/* Time */
+.train-time {
+  margin: 10px 0;
+}
+
+/* Seats */
+.seats {
+  display: flex;
+  gap: 15px;
+}
+
+.seat-box {
+  border: 1px solid #ffcccc;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  width: 100px;
+}
+
+.seat-box small {
+  color: red;
+}

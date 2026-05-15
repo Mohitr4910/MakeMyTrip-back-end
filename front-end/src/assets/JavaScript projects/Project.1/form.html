@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+
+<body>
+    <form>
+
+        <h1>Ragistration </h1>
+
+        <div class="inp">
+            <h4>Name</h4>
+            <p id="errname"></p>
+            <input id="name" type="text" placeholder="First Name" >
+            <input id="lastname" type="text" placeholder="Last Name">
+        </div>
+        <div class="inp">
+            <h4>Father Name</h4>
+            <p id="errlastname"></p>
+            <input id="name2" type="text" placeholder="First Name">
+            <input id="lastname2" type="text" placeholder="Last Name">
+        </div>
+        <div class="inp dsp">
+            <h4>D.O.B</h4>
+            <p id="errdob"></p>
+            <input id="dob" type="date">
+        </div>
+
+        <div class="inp dsp">
+            <h4>Contact Number</h4>
+            <p id="errnum"></p>
+            <input id="num" type="text" placeholder="00-00-00-00-00">
+        </div>
+
+        <div class="inp dsp">
+            <h4>Email id</h4>
+            <p id="erremail" ></p>
+            <input id="email" type="text">
+        </div>
+        <div class="inp dsp">
+
+            <h4>Password</h4>
+            <p id="errpass"></p>
+            <input id="pass" type="text">
+        </div>
+        <div class="inp dsp">
+            <h4> Confirm Password</h4>
+            <p id="errcpass"></p>
+            <input id="cpass" type="text">
+        </div>
+
+
+        <div class="btn">
+            <button onclick="return Formvalidetion()">Submit</button>
+        </div>
+
+
+    </form>
+    
+  <script src="form2.js"></script>
+</body>
+
+</html>
