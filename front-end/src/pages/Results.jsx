@@ -76,11 +76,11 @@ let Results = () => {
     <>
       <div className="container">
         <h1>
-          {flights[0]?.from} to {flights[0]?.to} Trains
+          {flights[0]?.from} to {flights[0]?.to} Flights
         </h1>
 
         <p className="subtitle">
-          {flights.length} Trains found between {flights[0]?.from} (
+          {flights.length} Flights found between {flights[0]?.from} (
           {flights[0]?.fromCode}) to {flights[0]?.to} (
           {flights[0]?.toCode})
         </p>
@@ -107,20 +107,20 @@ let Results = () => {
           <span>₹0 cancellation fee</span>
         </div>
 
-        {/* Train List */}
+        {/* Flight List */}
         {filteredFlights.length > 0 ? (
-          filteredFlights.map((train, index) => (
+          filteredFlights.map((flight, index) => (
             <div className="train-card" key={index}>
               <div className="train-header">
-                <h3>{train.name || "19019 BDTS HW EXP"}</h3>
+                <h3>{flight.name}</h3>
                 <span className="rating">⭐ 4.0</span>
               </div>
 
               <div className="train-time">
-                <strong>{train.departure || "00:20"}</strong>
+                <strong>{flight.departuretime || "00:20"}</strong>
                 <span> → </span>
-                <strong>{train.arrival || "02:35"}</strong>
-                <p>26h 15m</p>
+                <strong>{flight.arrivaltime || "02:35"}</strong>
+                <p>-------</p>
               </div>
 
               <div className="seats">

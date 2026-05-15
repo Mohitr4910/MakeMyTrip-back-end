@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./FlightForm.css";
-import axios from "axios";
+import axios from "../Untils/axiosInstance";
+
 import { useNavigate } from "react-router-dom";
 
 function FlightForm() {
@@ -13,7 +14,9 @@ function FlightForm() {
     from_location: "",
     destination: "",
     date: "",
-    time: "",
+    departuretime: "",
+    arrivaltime: "",
+    price: ""
   });
 
   const data = JSON.parse(localStorage.getItem("user"));
@@ -123,6 +126,19 @@ function FlightForm() {
             required
           />
         </div>
+               <div className="input-group">
+            <label>Price</label>
+
+            <input
+              type="number"
+              name="price"
+              value={flightData.price}
+              onChange={handleChange}
+              required
+            placeholder="$Enter price"
+
+            />
+          </div>
 
         <div className="row">
 
@@ -139,16 +155,28 @@ function FlightForm() {
           </div>
 
           <div className="input-group">
-            <label>Time</label>
+            <label> Departure Time</label>
 
             <input
               type="time"
-              name="time"
-              value={flightData.time}
+              name="departuretime"
+              value={flightData.departuretime}
               onChange={handleChange}
               required
             />
           </div>
+          <div className="input-group">
+            <label>Arrival Time</label>
+
+            <input
+              type="time"
+              name="arrivaltime"
+              value={flightData.arrivaltime}
+              onChange={handleChange}
+              required
+            />
+          </div>
+   
 
         </div>
 

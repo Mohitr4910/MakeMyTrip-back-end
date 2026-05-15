@@ -1,11 +1,22 @@
-
 import React from "react";
 import "./AdminDashboard.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const AdminDashboard = () => {
 
   const user = JSON.parse(localStorage.getItem("user"));
+  const navigate = useNavigate();
+
+
+
+  let loggedIn = localStorage.getItem("accessToken") ? true : false;
+  const handleLogout = () => {
+    let choice = confirm("Are you sure you want to logout?");
+    if (!choice) return;
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("user");
+    navigate("/");
+  };
 
   return (
     <div className="admin-dashboard">
@@ -16,14 +27,26 @@ const AdminDashboard = () => {
 
         <div>
           <h1>🛫 Admin Dashboard</h1>
+
           <p className="welcome-text">
             Welcome Back {user?.user?.username}
           </p>
         </div>
 
-        <div className="admin-info">
-          <h3>{user?.user?.username}</h3>
-          <p>Superuser Panel</p>
+        <div className="header-right">
+
+          <div className="admin-info">
+            <h3>{user?.user?.username}</h3>
+            <p>Superuser Panel</p>
+          </div>
+
+          {/* LOGOUT BUTTON */}
+
+          
+          <button className="logout-btn" onClick={handleLogout}>
+            Logout
+          </button>
+
         </div>
 
       </div>
@@ -48,7 +71,7 @@ const AdminDashboard = () => {
 
         </Link>
 
-        <Link to="/allflights " className="link">
+        <Link to="/allflights" className="link">
 
           <div className="card flights-card">
 

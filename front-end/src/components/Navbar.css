@@ -44,6 +44,22 @@
   gap: 15px;
 }
 
+.auth button{
+    padding: 8px 12px;
+  border: 1px solid #007bff;
+  color: #007bff;
+  text-decoration: none;
+  border-radius:50%;
+
+  transition: 0.3s;
+  cursor: pointer;
+
+}
+
+.auth button:hover {
+  background-color: #fbfbfb;
+}
+
 .login {
   padding: 8px 16px;
   border: 1px solid #007bff;
@@ -68,4 +84,111 @@
 
 .signup:hover {
   background-color: #0056b3;
+}
+
+/* PROFILE BUTTON */
+.profile-btn{
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 55px;
+  height: 55px;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 1001;
+  transition: 0.3s;
+}
+
+.profile-btn:hover{
+  transform: scale(1.08);
+}
+
+/* SIDEBAR */
+.sidebar{
+  position: fixed;
+  top: 0;
+  right: -350px;
+  width: 320px;
+  height: 100vh;
+  background: white;
+  z-index: 2000;
+  transition: 0.4s ease;
+  box-shadow: -5px 0 25px rgba(0,0,0,0.2);
+  padding: 25px;
+}
+
+.sidebar.active{
+  right: 0;
+}
+
+.sidebar-top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-btn{
+  border: none;
+  background: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.profile-info{
+  text-align: center;
+  margin-top: 30px;
+}
+
+.profile-info img{
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-info h3{
+  margin-top: 12px;
+}
+
+.profile-info p{
+  color: gray;
+}
+
+/* LINKS */
+.sidebar-links{
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.sidebar-links button{
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: #f1f5f9;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.sidebar-links button:hover{
+  background: #0f172a;
+  color: white;
+}
+
+.logout-btn{
+  background: #894d4d !important;
+  color: white;
+}
+
+/* OVERLAY */
+.overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1500;
 }

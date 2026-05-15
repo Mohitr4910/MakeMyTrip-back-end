@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "./AirlineDashboard.css";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import axios from "../Untils/axiosInstance";
+
+import { useNavigate } from "react-router-dom";
 
 function AirlineDashboard() {
 
   const [flights, setFlights] = useState([]);
 
   const data = JSON.parse(localStorage.getItem("user"));
+  let navigate = useNavigate();
 
   // company data
   const user = data?.user;
@@ -56,18 +59,32 @@ function AirlineDashboard() {
 
   }, []);
 
+
+  let handleLogout = () => {
+    let choice = confirm("Are you sure you want to logout?");
+    if (!choice) return;
+    localStorage.removeItem("user");
+    localStorage.removeItem("accessToken"); 
+    navigate("/");
+  }
+
   return (
     <div className="dashboard">
 
-      {/* Navbar */}
-      <div className="navbar">
-        <h1>✈ Airline Dashboard</h1>
+     {/* Navbar */}
+<div className="navbar">
+  <h1>✈ Airline Dashboard</h1>
 
-        <div className="profile">
-          <h3>{user?.name}</h3>
-          <p>{company?.country}</p>
-        </div>
-      </div>
+  <div className="profile">
+    <h3>{user?.name}</h3>
+    <p>{company?.country}</p>
+
+    {/* Logout Button */}
+    <button className="logout-btn" onClick={handleLogout}>
+      Logout
+    </button>
+  </div>
+</div>
 
       {/* Company Card */}
       <div className="company-card">

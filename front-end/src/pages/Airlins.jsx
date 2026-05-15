@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Airlins.css";
-import axios from "axios";
-
+// import axios from "axios";
+import axios from "../Untils/axiosInstance";
 const Airlins = () => {
   const [companies, setCompanies] = useState([]);
   const [showForm, setShowForm] = useState(false);
@@ -23,9 +23,10 @@ const Airlins = () => {
     company_code: "",
     country: "",
     address: "",
-    useremail: "",
   });
 
+    console.log("User Form: ", userForm);
+    console.log("Company Form: ", companyForm);
   useEffect(() => {
     getCompanies();
   }, []);
@@ -42,6 +43,7 @@ const Airlins = () => {
       console.log(err);
     }
   };
+  
 
   // ---------------- USER FORM ----------------
   const handleUserChange = (e) => {
@@ -58,10 +60,11 @@ const Airlins = () => {
       );
 
       alert("User Created ✅ Now create company");
+      localStorage.setItem("newUserEmail", userForm.email); // 👉 store email to link with company form
       setStep(2); // 👉 NEXT FORM OPEN
     } catch (err) {
       console.log(err.response?.data);
-      alert("User creation failed ❌");
+      alert(err.response?.data?.email || "something went wrong creating user ❌");
     }
   };
 
@@ -75,13 +78,10 @@ const Airlins = () => {
 
     try {
       const res = await axios.post(
-        "http://127.0.0.1:8000/api/company/",
-        companyForm,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        }
+        "http://127.0.0.1:8000/api/company/",{
+          ...companyForm,
+          useremail: localStorage.getItem("newUserEmail") || "",
+        },
       );
 
       alert("Company Created ✅");
@@ -102,13 +102,13 @@ const Airlins = () => {
         company_code: "",
         country: "",
         address: "",
-        useremail: "",
+        useremail: localStorage.getItem("newUserEmail") || "", // 👉 pre-fill email for convenience
       });
 
       getCompanies();
     } catch (err) {
       console.log(err.response?.data);
-      alert(err.response?.data?.detail || "Error creating company ❌");
+      alert(err.response?.data || "Error creating company ❌");
 
     }
   };
@@ -133,9 +133,10 @@ const Airlins = () => {
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Airline Name</th>
+                <th>Airline Code</th>
                 <th>Country</th>
                 <th>Status</th>
+                <th>Action</th>
               </tr>
             </thead>
 
@@ -143,9 +144,17 @@ const Airlins = () => {
               {companies.map((c) => (
                 <tr key={c.id}>
                   <td>{c.id}</td>
-                  <td>✈ {c.name}</td>
+                  <td>✈ {c.company_code}</td>
                   <td>{c.country}</td>
                   <td>{c.status || "Active"}</td>
+                    <td>
+              <button
+                className="delete-btn"
+                onClick={() => handleDelete(c.id)}
+              >
+                Delete
+              </button>
+            </td>
                 </tr>
               ))}
             </tbody>
@@ -169,10 +178,10 @@ const Airlins = () => {
               <form onSubmit={submitUser} className="form">
                 <h2>Create User</h2>
 
-                <input name="name" placeholder="Name" onChange={handleUserChange} />
-                <input name="email" placeholder="Email" onChange={handleUserChange} />
-                <input name="contact" placeholder="Contact" onChange={handleUserChange} />
-                <input name="password" placeholder="Password" type="password" onChange={handleUserChange} />
+                <input name="name" placeholder="Name" onChange={handleUserChange}  required/>
+                <input name="email" placeholder="Email" onChange={handleUserChange} required />
+                <input name="contact" placeholder="Contact" onChange={handleUserChange}  required />
+                <input name="password" placeholder="Login Code" type="password" onChange={handleUserChange} required />
 
                 <button type="submit">Next ➜</button>
               </form>
@@ -187,25 +196,23 @@ const Airlins = () => {
                   name="company_code"
                   placeholder="Company Code"
                   onChange={handleCompanyChange}
+                  required
                 />
 
                 <input
                   name="country"
                   placeholder="Country"
                   onChange={handleCompanyChange}
+                  required
                 />
 
                 <textarea
                   name="address"
                   placeholder="Address"
                   onChange={handleCompanyChange}
+                  required
                 />
 
-                <input
-                  name="useremail"
-                  placeholder="User Email (must exist)"
-                  onChange={handleCompanyChange}
-                />
 
                 <button type="submit">Create Company 🚀</button>
               </form>

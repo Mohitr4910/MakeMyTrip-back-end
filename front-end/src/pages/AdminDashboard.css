@@ -151,3 +151,27 @@
   }
 
 }
+
+.header-right{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logout-btn{
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ff4d4d, #d90429);
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.25);
+}
+
+.logout-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(255, 0, 0, 0.35);
+}

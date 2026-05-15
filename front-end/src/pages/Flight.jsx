@@ -3,7 +3,8 @@ import "./Flight.css";
 import plane from "../assets/header.png"; // plane PNG
 import AnimatedContent from "../components/Animation";
 import { useEffect } from "react";
-import axios from "axios";
+import axios from "../Untils/axiosInstance";
+
 import Results from './Results';
 import { useNavigate } from "react-router-dom";
 import Paris from "../assets/eiffel-tower-night-paris-france-reflection-river-thames-4481x3365-8437.jpg";
@@ -26,7 +27,9 @@ let Flight= () => {
     departure:"",
     return:""
   })
+
   let navigate = useNavigate();
+
     let [flights, setFlights] = useState([]);
         
     let manageform = (e) => {
@@ -34,46 +37,54 @@ let Flight= () => {
     setform({ ...form, [e.target.name]: e.target.value })
 
   }
-  
-    let searchFlights = async (e) => {
-    e.preventDefault();
-  // let res = await axios.get("http://localhost:3000/flights", {
-  //   params: {
-  //     from: form.from,
-  //     to: form.to,
-  //     date: form.departure
-  //   }
-  // });
-  let accessToken = localStorage.getItem("accessToken");
-  console.log("Access Token:", accessToken);
-  let res = await axios
-  .get("http://127.0.0.1:8000/api/flights/", {
-    headers:{
-      Authorization:`Bearer ${accessToken}`
+
+  useEffect(() => {
+
+    let handleogdin = JSON.parse(localStorage.getItem("user"));
+
+    if (handleogdin?.user?.is_superuser) {
+      navigate("/admin-dashboard");
     }
-  })
-  .catch(err => {
+
+    else if (handleogdin?.user?.role=="company") {
+      navigate("/airline-dashboard");
+    }
+
+  }, []);
+  
+let searchFlights = async (e) => {
+  e.preventDefault();
+
+  let accessToken = localStorage.getItem("accessToken");
+
+  try {
+
+    let res = await axios.get(
+      `http://127.0.0.1:8000/api/flights/?from=${form.from}&to=${form.to}`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    setFlights(res.data);
+
+    navigate("/results", {
+      state: {
+        flights: res.data,
+        selectdate: form.departure,
+      },
+    });
+
+  } catch (err) {
     console.log("error", err.response?.data);
-  });
-
-let filtered = res.data.filter(flight =>
-  flight.from.toLowerCase().includes(form.from.toLowerCase()) &&
-  flight.to.toLowerCase().includes(form.to.toLowerCase())
- 
-);
-
-
-setFlights(filtered);
-console.log("Filtered Flights:", filtered);
-navigate("/results", { state: { flights: filtered, selectdate: form.departure } });
-// console.log(res.data);
-// setFlights(res.data);
+  }
 };
 
 useEffect(() => {
   console.log("Updated Flights:", flights);
 }, [flights]);
-
 
 
   return (
@@ -115,9 +126,8 @@ useEffect(() => {
               ease="power4.out">
            
 <div className="search-container">
-  <form className="search-box" onSubmit={searchFlights}>
 
-    {/* FROM */}
+  <form className="search-box" onSubmit={searchFlights}>
     <div className="field">
       <label>From</label>
       <input
@@ -174,25 +184,25 @@ useEffect(() => {
     <div className="card">
       <img src={Paris} alt="Paris" />
       <h3>Paris</h3>
-      <p>From ₹25,000</p>
+      <p className="p">From ₹25,000</p>
     </div>
 
     <div className="card">
       <img src={Dubai} alt="Dubai" />
       <h3>Dubai</h3>
-      <p>From ₹18,000</p>
+      <p className="p">From ₹18,000</p>
     </div>
 
     <div className="card">
       <img src={Maldives} alt="Maldives" />
       <h3>Maldives</h3>
-      <p>From ₹30,000</p>
+      <p className="p">From ₹30,000</p>
     </div>
 
     <div className="card">
       <img src={London} alt="London" />
       <h3>London</h3>
-      <p>From ₹40,000</p>
+      <p className="p">From ₹40,000</p>
     </div>
   </div>
 </div>

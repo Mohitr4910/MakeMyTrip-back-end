@@ -254,10 +254,11 @@ body {
 
 .card h3 {
   margin: 10px 0 5px;
+  color: black;
 }
 
-.card p {
-  color: #555;
+.card .p {
+  color: #000000;
   margin-bottom: 10px;
 }
 
@@ -406,3 +407,4 @@ body {
 .feature-card:hover .back {
   transform: translateY(0);
 }
+
