@@ -109,26 +109,12 @@ import os
 import dj_database_url
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get("postgresql://makemytrip_user:Sf065zPcpIl8K9h6eJuDibecNipI3R8X@dpg-d851m9f7f7vs73fvkpi0-a.singapore-postgres.render.com/makemytrip")
+    'default': dj_database_url.parse(
+        "postgresql://makemytrip_user:Sf065zPcpIl8K9h6eJuDibecNipI3R8X@dpg-d851m9f7f7vs73fvkpi0-a.singapore-postgres.render.com/makemytrip"
     )
 }
 
 
-import os
-from django.contrib.auth.models import User
-
-if os.environ.get("CREATE_SUPERUSER") == "True":
-    username = "Mohit_Rahangdale"
-    email = "mohitrahangdale67890@gmail.com"
-    password = "mohit12"
-
-    if not User.objects.filter(username=username).exists():
-        User.objects.create_superuser(
-            username=username,
-            email=email,
-            password=password
-        )
 
 
 # Password validation
