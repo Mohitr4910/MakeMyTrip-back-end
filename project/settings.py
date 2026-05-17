@@ -52,6 +52,7 @@ MIDDLEWARE = [
 
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -61,9 +62,9 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
    
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
     "https://make-my-trip-front-end-w5x3.vercel.app",
+    # "http://localhost:5173",
+    # "http://127.0.0.1:5173",
 ]
 CORS_ALLOW_METHODS = (
     "DELETE",
@@ -161,7 +162,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 from datetime import timedelta
 from django.conf import settings
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': True,
     'ALGORITHM': 'HS256',
