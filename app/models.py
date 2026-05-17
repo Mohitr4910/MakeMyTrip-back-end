@@ -9,7 +9,7 @@ class Users(AbstractUser):
     name= models.CharField(max_length=50)
     email=models.EmailField(max_length=100 ,unique=True)
     contact=models.CharField(max_length=10)
-    password=models.CharField(max_length=50)
+    password=models.CharField(max_length=200)
     
     ROLE_CHOICES = (
         ('admin', 'Admin'),
