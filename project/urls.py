@@ -20,7 +20,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from django.urls import path, include
 
-from app.views import login_view
+from app.views import create_order, login_view, payment_status
 
 
 urlpatterns = [
@@ -32,5 +32,8 @@ urlpatterns = [
         'api/token/refresh/',
         TokenRefreshView.as_view(),
         name='token_refresh'
+    ),
+    path("create-order/", create_order),
+    path("payment_status/",payment_status
     ),
 ]

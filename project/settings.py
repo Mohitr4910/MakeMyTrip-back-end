@@ -107,8 +107,13 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME':'airline_db',
+        'USER':'root',
+        'PASSWORD':'2805',
+        'HOST':'localhost',
+        'PORT':'3306'
+
     }
 }
 
@@ -171,5 +176,14 @@ REST_FRAMEWORK = {
     
 }
 
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+EMAIL_HOST_USER = 'mohitrahangdale67890@gmail.com'
+EMAIL_HOST_PASSWORD = 'vwqucuoipyqhbejp'
 
 

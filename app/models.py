@@ -2,7 +2,7 @@ from statistics import mode
 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-
+from django.conf import settings
 # Create your models here.
 
 class Users(AbstractUser):
@@ -51,3 +51,51 @@ class Flight(models.Model):
     price=models.FloatField()
 
 
+class Booking(models.Model):
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    flight = models.ForeignKey("app.Flight", on_delete=models.CASCADE)
+
+    mobile_number = models.CharField(max_length=15)
+
+    total_people = models.IntegerField()
+
+    total_price = models.IntegerField(default=0)
+
+    booking_date = models.DateTimeField(auto_now_add=True)
+    
+    
+    def __str__(self):
+        return f"Booking {self.id}"
+    
+class Passenger(models.Model):
+
+    booking = models.ForeignKey(
+        Booking,
+        on_delete=models.CASCADE,
+        related_name="passengers"
+    )
+
+    name = models.CharField(max_length=100)
+
+    age = models.IntegerField()
+
+    gender = models.CharField(max_length=10)
+
+    seat_type = models.CharField(max_length=20)
+
+    seat_price = models.IntegerField()
+
+    def __str__(self):
+        return self.name
+    
+
+
+class Payment(models.Model):
+    amount = models.CharField(max_length=100 , blank=True)
+    user_email = models.EmailField(max_length=100 )
+    contact = models.CharField(max_length=10)
+    order_id = models.CharField(max_length=1000 )
+    razorpay_payment_id = models.CharField(max_length=1000 ,blank=True)
+    paid = models.BooleanField(default=False)
