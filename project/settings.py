@@ -115,6 +115,22 @@ DATABASES = {
 }
 
 
+import os
+from django.contrib.auth.models import User
+
+if os.environ.get("CREATE_SUPERUSER") == "True":
+    username = "Mohit_Rahangdale"
+    email = "mohitrahangdale67890@gmail.com"
+    password = "mohit12"
+
+    if not User.objects.filter(username=username).exists():
+        User.objects.create_superuser(
+            username=username,
+            email=email,
+            password=password
+        )
+
+
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
 
