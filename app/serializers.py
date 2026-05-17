@@ -73,29 +73,29 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
 
-        if user.role == "company":
-            name=validated_data.get('name')
-            message = f"""
-            Hello {name},
+        # if user.role == "company":
+        #     name=validated_data.get('name')
+        #     message = f"""
+        #     Hello {name},
 
-            Your account has been created successfully.
+        #     Your account has been created successfully.
 
-            You can now login using the following credentials:
+        #     You can now login using the following credentials:
 
-            Email ID : {email}
-            Your Login Code : {password}
+        #     Email ID : {email}
+        #     Your Login Code : {password}
 
-            Please keep your login details secure.
+        #     Please keep your login details secure.
 
-            Thank you for choosing our service.
-            Have a great journey ahead!
+        #     Thank you for choosing our service.
+        #     Have a great journey ahead!
 
-            Regards,
-            Flight Booking Team
-            """
-            send_mail(
-                    "Welcome to Flight Booking Portal",message,
-                                                    'mohitrahangdale67890@gmail.com',[email] ) 
+        #     Regards,
+        #     Flight Booking Team
+        #     """
+        #     send_mail(
+        #             "Welcome to Flight Booking Portal",message,
+        #                                             'mohitrahangdale67890@gmail.com',[email] ) 
 
 
 
