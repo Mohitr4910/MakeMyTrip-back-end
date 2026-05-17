@@ -1,4 +1,3 @@
-from urllib import request
 
 from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated
@@ -18,13 +17,32 @@ from django.conf import settings
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-
 # USER VIEWSET
 
 class UserViewSet(viewsets.ModelViewSet):
-
     queryset = Users.objects.all()
     serializer_class = UserSerializer
+    def create(self, request, *args, **kwargs):
+
+        print("DATA:", request.data)
+
+        serializer = self.get_serializer(data=request.data)
+
+        if serializer.is_valid():
+
+            serializer.save()
+
+            return Response(
+                serializer.data,
+                status=status.HTTP_201_CREATED
+            )
+        
+        print("ERROR:", serializer.errors)
+
+        return Response(
+            serializer.errors,
+            status=status.HTTP_400_BAD_REQUEST
+        )
 
 
 class CompanyViewSet(viewsets.ModelViewSet):
