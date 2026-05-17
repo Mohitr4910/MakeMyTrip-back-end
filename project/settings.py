@@ -110,7 +110,7 @@ import dj_database_url
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get("DATABASE_URL")
+        default=os.environ.get("postgresql://makemytrip_user:Sf065zPcpIl8K9h6eJuDibecNipI3R8X@dpg-d851m9f7f7vs73fvkpi0-a.singapore-postgres.render.com/makemytrip")
     )
 }
 
