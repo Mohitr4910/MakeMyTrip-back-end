@@ -169,22 +169,22 @@ class BookingSerializer(serializers.ModelSerializer):
         user_email=booking.user.email
         user_name=booking.user.name
         serializer_data = BookingSerializer(booking).data
-        message = f"""
-                    Hello {user_name},
-                    Your flight booking has been confirmed
-                    successfully.
+        # message = f"""
+        #             Hello {user_name},
+        #             Your flight booking has been confirmed
+        #             successfully.
 
-                    Booking Date : {serializer_data['booking_date_ist']}
-                    Booking ID : {booking.id}
-                    Total Price : ₹{booking.total_price}
+        #             Booking Date : {serializer_data['booking_date_ist']}
+        #             Booking ID : {booking.id}
+        #             Total Price : ₹{booking.total_price}
 
 
-                    Thank you for choosing us.
-                    """
+        #             Thank you for choosing us.
+        #             """
 
-        send_mail(
-                 "Flight Booking Confirmed",message,
-                                                'mohitrahangdale67890@gmail.com',[user_email] ) 
+        # send_mail(
+        #          "Flight Booking Confirmed",message,
+        #                                         'mohitrahangdale67890@gmail.com',[user_email] ) 
 
 
         return booking
