@@ -170,6 +170,7 @@ def create_order(request):
     total_price=int(request.data.get("amount"))
     amount = int(request.data.get("amount")) * 100
     email= request.data.get("email")
+    print(email)
     contact = request.data.get("contact")
     print(amount, email, contact)
 
@@ -183,7 +184,7 @@ def create_order(request):
 
     Payment.objects.create(
         amount=str(total_price),
-        user_email=email,
+        user_email=request.user.email,
         contact=contact,
         order_id=payment["id"]
     )
