@@ -11,7 +11,6 @@ import pytz
 from .models import Booking, Passenger
 
 
-from django.core.mail import send_mail
 
 
 
