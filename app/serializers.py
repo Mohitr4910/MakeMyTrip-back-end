@@ -166,9 +166,9 @@ class BookingSerializer(serializers.ModelSerializer):
 
         booking.save()
 
-        user_email=booking.user.email
-        user_name=booking.user.name
-        serializer_data = BookingSerializer(booking).data
+        # user_email=booking.user.email
+        # user_name=booking.user.name
+        # serializer_data = BookingSerializer(booking).data
         # message = f"""
         #             Hello {user_name},
         #             Your flight booking has been confirmed
