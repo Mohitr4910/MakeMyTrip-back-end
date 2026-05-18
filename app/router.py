@@ -6,7 +6,7 @@ router = DefaultRouter()
 router.register('users', UserViewSet)
 router.register('company', CompanyViewSet)
 router.register('flights', FlightViewSet)
-router.register('bookings', BookingViewSet)
+router.register('bookings', BookingViewSet, basename='bookings')
 
 urlpatterns = router.urls
 
